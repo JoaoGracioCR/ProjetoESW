@@ -7,6 +7,6 @@ var autorizacaoSchema = new mongoose.Schema({
     descricaoAutorizacoes :{type: String}
 });
 
-var Autorizacao = mongoose.model('sala',autorizacaoSchema);
+var Autorizacao = mongoose.model('autorizacoes',autorizacaoSchema);
 
 module.exports = Autorizacao;

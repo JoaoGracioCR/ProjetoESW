@@ -8,6 +8,6 @@ var relatorioSchema = new mongoose.Schema({
     utilizadorRelatorio:{type:String}
 });
 
-var Relatorio = mongoose.model('sala',relatorioSchema);
+var Relatorio = mongoose.model('relatorio',relatorioSchema);
 
 module.exports = Relatorio;
