@@ -7,6 +7,8 @@ router.get('/', function(req,res,next){
 	res.send('index');
 });
 
+
+//Login Method FORM LOGIN login.html
 router.post('/login',function(req,res){
 	let body = req.body;
 	const MongoClient = require('mongodb').MongoClient;
@@ -15,11 +17,10 @@ router.post('/login',function(req,res){
 	client.connect(err => {
 	//const collection = client.db("test").collection("devices");
 	// perform actions on the collection object
-	console.log("okokok");
 	client.close();
 	});
 
-	var username= req.body.username;
+	var username= req.body.numeroAluno;
 	var password= req.body.password;
 	
 	User.findOne({username:username, password: password},function(err,user){
@@ -31,32 +32,13 @@ router.post('/login',function(req,res){
 		if(!user){
 			return res.status(404).send();
 		}
+
 		return res.status(200).send();
 	})
+
+	findOne(username, password);
 });
 
-router.post('/register',function(req,res){
-	var username= req.body.username;
-	var password = req.body.password;
-	var firstname = req.body.firstname;
-	var lastname = req.body.lastname;
-	
-	var newUser = new User();
-	
-	newUser.username= username;
-	newUser.password= password;
-	newUser.firtsname=firstname;
-	newUser.lastname=lastname;
-	newUser.save(function(err, savedUser){
-		if(err){
-			console.log(err);
-			return res.status(500).send();
-		}
-		
-		return res.status(200).send();
-	});
 
-	
-})
 
 module.exports = router;
