@@ -1,4 +1,4 @@
-let mongoose = require('mongoose')
+/* let mongoose = require('mongoose')
 
 //informações da BD mongo
 const server = `JO-C3-A3O'S ORG - 2019-04-26 `
@@ -6,7 +6,10 @@ const database = 'project 0'
 const user = 'projeto'
 const password = 'projeto'
 
-mongoose.connect(`mongodb://${user}:${password}@${server}/${database}`)
+mongoose.connect(`mongodb://${user}:${password}@${server}/${database}`) */
+
+
+
 
 
 //const MongoClient = require('mongodb').MongoClient;

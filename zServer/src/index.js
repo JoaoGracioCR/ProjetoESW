@@ -1,7 +1,5 @@
 var express = require('express');
-
 var router = express.Router();
-
 var User = require('./routes/user.js');
 
 /*GET home page. */
@@ -10,6 +8,17 @@ router.get('/', function(req,res,next){
 });
 
 router.post('/login',function(req,res){
+	let body = req.body;
+	const MongoClient = require('mongodb').MongoClient;
+	const uri = "mongodb+srv://projeto:<projeto>@clusteresw-idz8g.mongodb.net/Projetc 0?retryWrites=true";
+	const client = new MongoClient(uri, { useNewUrlParser: true });
+	client.connect(err => {
+	//const collection = client.db("test").collection("devices");
+	// perform actions on the collection object
+	console.log("okokok");
+	client.close();
+	});
+
 	var username= req.body.username;
 	var password= req.body.password;
 	
@@ -45,5 +54,9 @@ router.post('/register',function(req,res){
 		}
 		
 		return res.status(200).send();
-	})
+	});
+
+	
 })
+
+module.exports = router;
