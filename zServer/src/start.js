@@ -1,6 +1,6 @@
 let express = require('express');
 let app = express();
-let personRoute = require('./routes/person')
+let personRoute = require('./routes/users')
 
 let indexRouter = require('./index');
 app.use(express.urlencoded({ extended: false }));
