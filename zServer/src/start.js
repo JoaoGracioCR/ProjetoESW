@@ -2,6 +2,8 @@ let express = require('express');
 let app = express();
 let personRoute = require('./routes/person')
 
+let index = require('../src/index');
+
 app.use((req, res, next) =>{
     console.log(`${new Date().toString()} => ${req.originalUrl}`)
     next()
