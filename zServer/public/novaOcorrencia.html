@@ -25,7 +25,7 @@
       <div id="menubar">
         <ul id="menu">
           <!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
-          <li class="selected"><a href="index.html">Home</a></li>
+          <li><a href="index.html">Home</a></li>
           <li><a href="salas.html">Salas</a></li>
           <li><a href="docentes.html">Docentes</a></li>
           <li><a href="ocorrencias.html">Occorências</a></li>
@@ -57,27 +57,23 @@
           <li><a href="http://www.si.ips.pt/ips_si/web_base.gera_pagina?P_pagina=30470">Informações adicionais</a></li>
         </ul>      
       </div>
-      <div id="content">   
-          <h1>Comemorações do 40º aniversário do IPS | Programa</h1>
-            <h2 style="color:orange">Politécnico assinala o aniversário com uma série de iniciativas ao longo de 2019</h2>
-   
-            <span><img src="./Images/banner.png" alt="40anos" style="width:600px;height:200px;padding-top: 5px"/></span>
-            <p></p>
-         <p>Em 14 de outubro de 1979 foi criado o Instituto Politécnico de Setúbal. 2019 dá início ao 
-           programa comemorativo do seu 40.º aniversário, com um conjunto de iniciativas que se prolongarão 
-           até outubro de 2019. 
-           <p>Entre as iniciativas previstas, contam-se um 
-           <b>congresso, um roteiro por todos os concelhos do 
-           distrito de Setúbal, atividades desportivas, a publicação de um livro, um concurso e uma exposição 
-           de fotografia, uma semana internacional, e ainda concertos, teatro, ciclos de conferências e ações 
-           de desenvolvimento organizacional.</b></p>
- 
-           <p>Acompanhe aqui o programa de comemoração deste 40.º aniversário e junte-se a nós nesta celebração.</p>
-           <p></p>
-
-           <a href="http://www.si.ips.pt/ips_si/noticias_geral.ver_noticia?P_NR=7560">Ler notícia completa...</a>
-     </div>
-  </div>
+      <div id="content">
+        
+        <h1>Registar Occorência</h1>
+        <p>Indique uma descriçao detalhada da ocorrência:</p>
+        <form action="" method="post">
+          <div class="form_settings">
+            <p><span>Nome completo</span><input class="contact" type="text" name="your_name" value="" /></p>
+            <p><span>Número de estudante</span><input class="contact" type="text" name="your_number" value="" /></p>
+            <p><span>Email</span><input class="contact" type="text" name="your_email" value="" /></p>
+            <p><span>Tipo de ocorrência</span><select id="id" name="name"><option value="0"></option><option value="1">Sala</option><option value="2">Material</option><option value="3">Dano</option><option value="4">Outro</option></select></p>
+            <p><span>Ocorrência</span><textarea class="contact textarea" rows="8" cols="50" name="your_enquiry"></textarea></p>
+            <p style="padding-top: 15px"><span>&nbsp;</span><input class="submit" type="submit" name="contact_submitted" value="submit" /></p>
+          </div>
+        </form>
+        <p><br /><br />NOTA: A sua occorência será registada e analisada no espaço de 2(dois) dias úteis. Será notificado via email.</p>
+      </div>
+    </div>
     <div id="content_footer"></div>
     <div id="footer">
       <p>Copyright &copy; IPS Setúbal | <a href="http://www.si.ips.pt/ips_si/web_page.inicial">IPS</a> |</p>
