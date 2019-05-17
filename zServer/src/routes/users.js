@@ -16,10 +16,11 @@ router.get('/', (req, res) => {
 });
 
 // Criar utilizador
-router.post('/', (req, res) => {
+/* router.post('/', (req, res) => {
     var user = new userModel(req.body);
 
     user.save();
 });
+ */
 
 module.exports = router;
