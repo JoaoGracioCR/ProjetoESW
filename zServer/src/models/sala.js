@@ -4,7 +4,7 @@ var salaSchema = new mongoose.Schema({
 	idSala:{type:Number, unique: true},
 	numeroSala:{type: String},
 	estabelecimento:{type: String},
-	disponibilidade:{type: String},
+	disponivel:{type: Boolean},
 	horario:{type: Boolean}
 });
 
