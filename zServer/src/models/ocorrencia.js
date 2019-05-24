@@ -1,10 +1,10 @@
 var mongoose= require('mongoose');
 
 var ocorrenciaSchema = new mongoose.Schema({
-	idOcorrencia:{type:integer, unique: true},
+	idOcorrencia:{type:Number, unique: true},
     relatorioOcorrencia:{type: String},
     dataOcorrencia:{type: Date},
-    utilizadorOcorrencia :{type: Integer}
+    utilizadorOcorrencia :{type: Number}
 });
 
 var Ocorrencia = mongoose.model('ocorrencia',ocorrenciaSchema);
