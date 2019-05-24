@@ -40,4 +40,71 @@ router.get('/login',(req,res)=>{
 	res.redirect('/login.html');
 });
 
-module.exports = router;
+
+//insert ocurr Method FORM LOGIN ocurrencias.
+router.post('/ocurrencias', function (req, res) {
+
+	var name = req.body.your_name;
+	var number= req.body.your_number;
+	var email = req.body.your_mail;
+	var type = req.body.your_type;
+	var enquiry = req.body.your_enquiry;
+
+	const client = new MongoClient(uri, { useNewUrlParser: true });
+	client.connect(err => {
+		if (err) {
+			res.sendStatus(500).send("error connecting to the database");
+		}
+		const collection = client.db("ESW").collection("ocurrencias");
+		var obj = { _name:name, _number:number, _email:email, _type:type, _enquiry:enquiry};
+		client.collection("ocurrencias").insertOne(obj, function(err, res) {
+			if (err) throw err;
+			console.log("1 document inserted");
+			client.close();
+		  });
+
+
+});
+});
+
+
+router.get("/getAll", (req, res, next) => {
+	client.connect(err => {
+	const getCollection = client.db("ESW").collection("Ocurrencias");
+	// perform actions on the collection object
+	getCollection.find({}).toArray((err, result) => {
+	if (err) {
+	console.log(err);
+	res.send(500);
+	client.close();
+	}
+	else {
+	res.send(result);
+	client.close();
+	}
+	});
+	});
+	});
+	
+module.exports = router; 
+
+function criarTabela(conteudo) {
+	var tr = document.createElement('tr');
+	for (var i = 0; i < conteudo.length; i++) {
+	var td = document.createElement('td');
+	td.textContent = conteudo[i];
+	tr.appendChild(td);
+	}
+	return tr;
+	}
+	$(() => {
+	$.get("./encomendas/getAll", function (data) {
+	console.log(data);
+	data.forEach(result => {
+	document.getElementById("tbody").appendChild(criarTabela(
+	[result.relatorioOcorrencia, result.dataOcorrencia, result.utilizadorOcorrencia]
+	));
+	});
+	});
+	});
+	
