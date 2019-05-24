@@ -63,16 +63,64 @@
               <p>Lista de docentes:</p>
               <table style="width:100%; border-spacing:0;">
                 <tr><th>Nome</th><th>Gabinete</th><th>Establecimento</th><th></th><th>Horário</th></tr>
-                <tr><td>António Manuel</td><td>F255</td><td>EST</td><td></td><td><input name="search" type="image" src="./Images/search.png" alt="Search" title="Search" /></td></tr>
-                <tr><td>Francisco Silva</td><td>F233</td><td>EST</td><td></td><td><input name="search" type="image" src="./Images/search.png" alt="Search" title="Search" /></tr>
-                <tr><td>Diogo Joaquim</td><td>G020</td><td>ESCE</td><td></td><td><input name="search" type="image" src="./Images/search.png" alt="Search" title="Search" /></tr>
-                <tr><td>Tiago Josébio</td><td>F270</td><td>EST</td><td></td><td><input name="search" type="image" src="./Images/search.png" alt="Search" title="Search" /></tr>
-                <tr><td>Leon Costa</td><td>E303</td><td>ESS</td><td></td><td><input name="search" type="image" src="./Images/search.png" alt="Search" title="Search" /></td></tr>
-                <tr><td>Gonçalo Lopes</td><td>E301</td><td>ESS</td><td></td><td><input name="search" type="image" src="./Images/search.png" alt="Search" title="Search" /></tr>
-                <tr><td>Daniel Ferreira</td><td>F240</td><td>EST</td><td></td><td><input name="search" type="image" src="./Images/search.png" alt="Search" title="Search" /></td></tr>
-                <tr><td>Pedro Silva</td><td>E290</td><td>ESS</td><td></td><td><input name="search" type="image" src="./Images/search.png" alt="Search" title="Search" /></tr>
-                <tr><td>André Costa</td><td>G012</td><td>ESCE</td><td></td><td><input name="search" type="image" src="./Images/search.png" alt="Search" title="Search" /></td></tr>
+                <tr><td>António Manuel</td><td>F255</td><td>EST</td><td></td><td><input class="myBtn" name="search" type="image" src="./Images/search.png" alt="Search" title="Search" />    <a href="./HorarioSalas/horario1.pdf  " download><img src="./Images/download.png" ></a></tr>
+                <tr><td>Francisco Silva</td><td>F233</td><td>EST</td><td></td><td><input class="myBtn" name="search" type="image" src="./Images/search.png" alt="Search" title="Search" />    <a href="./HorarioSalas/horario1.pdf  " download><img src="./Images/download.png" ></a></tr>
+                <tr><td>Diogo Joaquim</td><td>G020</td><td>ESCE</td><td></td><td><input class="myBtn" name="search" type="image" src="./Images/search.png" alt="Search" title="Search" />    <a href="./HorarioSalas/horario1.pdf  " download><img src="./Images/download.png" ></a></tr>
+                <tr><td>Tiago Josébio</td><td>F270</td><td>EST</td><td></td><td><input class="myBtn" name="search" type="image" src="./Images/search.png" alt="Search" title="Search" />    <a href="./HorarioSalas/horario1.pdf  " download><img src="./Images/download.png" ></a></tr>
+                <tr><td>Leon Costa</td><td>E303</td><td>ESS</td><td></td><td><input class="myBtn" name="search" type="image" src="./Images/search.png" alt="Search" title="Search" />    <a href="./HorarioSalas/horario1.pdf  " download><img src="./Images/download.png" ></a></tr>
+                <tr><td>Gonçalo Lopes</td><td>E301</td><td>ESS</td><td></td><td><input class="myBtn" name="search" type="image" src="./Images/search.png" alt="Search" title="Search" />    <a href="./HorarioSalas/horario1.pdf  " download><img src="./Images/download.png" ></a></tr>
+                <tr><td>Daniel Ferreira</td><td>F240</td><td>EST</td><td></td><td><input class="myBtn" name="search" type="image" src="./Images/search.png" alt="Search" title="Search" />    <a href="./HorarioSalas/horario1.pdf  " download><img src="./Images/download.png" ></a></tr>
+                <tr><td>Pedro Silva</td><td>E290</td><td>ESS</td><td></td><td><input class="myBtn" name="search" type="image" src="./Images/search.png" alt="Search" title="Search" />    <a href="./HorarioSalas/horario1.pdf  " download><img src="./Images/download.png" ></a></tr>
+                <tr><td>André Costa</td><td>G012</td><td>ESCE</td><td></td><td><input class="myBtn" name="search" type="image" src="./Images/search.png" alt="Search" title="Search" />    <a href="./HorarioSalas/horario1.pdf  " download><img src="./Images/download.png" ></a></tr>
               </table>
+
+                <!-- The Modal -->
+          <div id="myModal" class="modal">
+          
+            <!-- Modal content -->
+            <div class="modal-content">
+              <span class="close">&times;</span> 
+              <img src="./Images/horario.PNG" alt="horario" />  
+            </div>
+          
+          </div>
+          
+          <script>
+          // Get the modal
+         // var modal = document.getElementById("myModal");
+          
+          // Get the button that opens the modal
+          var btn = document.getElementsByClassName("myBtn");
+          btn = Array.prototype.slice.call(btn);
+          btn.forEach(element => {
+            element.addEventListener('click',e=>{
+              var modal = document.getElementById("myModal");
+              modal.style.display = "block";
+
+          // Get the <span> element that closes the modal
+            var span = document.getElementsByClassName("close")[0];
+               // When the user clicks on <span> (x), close the modal
+          span.onclick = function() {
+            modal.style.display = "none";
+          }
+          
+          // When the user clicks anywhere outside of the modal, close it
+          window.onclick = function(event) {
+            if (event.target == modal) {
+              modal.style.display = "none";
+            }
+          }
+            });
+          });
+          
+
+          
+
+          
+         
+          </script>
+
+
             </div>
           </div>
        
