@@ -8,6 +8,6 @@ var salaSchema = new mongoose.Schema({
 	horario:{type: Boolean}
 });
 
-var Sala = mongoose.model('sala',salaSchema,'salas');
+var Sala = mongoose.model('sala',salaSchema);
 
 module.exports = Sala;

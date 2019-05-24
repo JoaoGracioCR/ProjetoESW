@@ -7,6 +7,6 @@ var ocorrenciaSchema = new mongoose.Schema({
     utilizadorOcorrencia :{type: Number}
 });
 
-var Ocorrencia = mongoose.model('ocorrencia',ocorrenciaSchema, 'ocorrencias');
+var Ocorrencia = mongoose.model('ocorrencia',ocorrenciaSchema);
 
 module.exports = Ocorrencia;

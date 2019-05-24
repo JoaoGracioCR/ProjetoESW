@@ -1,7 +1,8 @@
 let express = require('express');
 let router = express.Router();
-
+let mongoose = require('mongoose');
 var ocorrenciaModel = require('../models/ocorrencia');
+mongoose.connect('mongodb+srv://projeto:projeto@clusteresw-idz8g.mongodb.net/ESW?retryWrites=true',{useNewUrlParser:true});
 
 // Listar ocorrencias
 router.get('/', (req, res) => {
