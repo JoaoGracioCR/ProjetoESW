@@ -5,7 +5,8 @@ var path = require('path');
 
 var indexRouter = require('./src/routes/index');
 var usersRouter = require('./src/routes/users');
-var indexSalas = require('./src/routes/salas')
+var indexSalas = require('./src/routes/salas');
+var ocorrenciaRouter = require('./src/routes/ocorrencias');
 
 var app = express();
 
@@ -17,6 +18,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/salas',indexSalas);
+app.use('/ocorrencias', ocorrenciaRouter);
 
 
 // catch 404 and forward to error handler
@@ -32,7 +34,7 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.send('error');
 });
 
 const PORT = process.env.PORT || 3000;
