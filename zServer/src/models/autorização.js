@@ -1,7 +1,7 @@
 var mongoose= require('mongoose');
 
 var autorizacaoSchema = new mongoose.Schema({
-	idAutorizacoes:{type:integer, unique: true},
+	idAutorizacoes:{type:Number, unique: true},
     tituloAutorizacoes:{type: String},
     tipoAutorizacoes:{type: String},
     descricaoAutorizacoes :{type: String}

@@ -2,7 +2,7 @@ let express = require('express');
 let router = express.Router();
 let mongoose = require('mongoose');
 var userModel = require('../models/user');
-mongoose.connect('mongodb+srv://projeto:projeto@clusteresw-idz8g.mongodb.net/test?retryWrites=true',{useNewUrlParser:true});
+mongoose.connect('mongodb+srv://projeto:projeto@clusteresw-idz8g.mongodb.net/ESW?retryWrites=true',{useNewUrlParser:true});
 
 // Listar utilizadores
 router.get('/', (req, res) => {
