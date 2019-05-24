@@ -21,13 +21,13 @@ router.post('/login', function (req, res) {
 		// perform actions on the collection object
 		collection.findOne({ _userName: username }, (err, result) => {
 			if (err) throw err;
-			if(result){
-				if(result['_passWord']===password){
+			if (result) {
+				if (result['_passWord'] === password) {
 					console.log("Login")
-				}else{
+				} else {
 					res.redirect('/login.html');
 				}
-			}else{
+			} else {
 				res.redirect('/login.html');
 			}
 			client.close();
@@ -36,7 +36,7 @@ router.post('/login', function (req, res) {
 
 });
 
-router.get('/login',(req,res)=>{
+router.get('/login', (req, res) => {
 	res.redirect('/login.html');
 });
 
@@ -45,7 +45,7 @@ router.get('/login',(req,res)=>{
 router.post('/ocurrencias', function (req, res) {
 
 	var name = req.body.your_name;
-	var number= req.body.your_number;
+	var number = req.body.your_number;
 	var email = req.body.your_mail;
 	var type = req.body.your_type;
 	var enquiry = req.body.your_enquiry;
@@ -56,55 +56,54 @@ router.post('/ocurrencias', function (req, res) {
 			res.sendStatus(500).send("error connecting to the database");
 		}
 		const collection = client.db("ESW").collection("ocurrencias");
-		var obj = { _name:name, _number:number, _email:email, _type:type, _enquiry:enquiry};
-		client.collection("ocurrencias").insertOne(obj, function(err, res) {
+		var obj = { _name: name, _number: number, _email: email, _type: type, _enquiry: enquiry };
+		client.collection("ocurrencias").insertOne(obj, function (err, res) {
 			if (err) throw err;
 			console.log("1 document inserted");
 			client.close();
-		  });
+		});
 
 
+	});
 });
+
+
+router.get("/getAll", (req, res, next) => {
+	client.connect(err => {
+		const getCollection = client.db("ESW").collection("Ocurrencias");
+		// perform actions on the collection object
+		getCollection.find({}).toArray((err, result) => {
+			if (err) {
+				console.log(err);
+				res.send(500);
+				client.close();
+			}
+			else {
+				res.send(result);
+				client.close();
+			}
+		});
+	});
 });
 
+module.exports = router;
 
-router.get("/getAll", (req, res, next) => {
-	client.connect(err => {
-	const getCollection = client.db("ESW").collection("Ocurrencias");
-	// perform actions on the collection object
-	getCollection.find({}).toArray((err, result) => {
-	if (err) {
-	console.log(err);
-	res.send(500);
-	client.close();
+function criarTabela(conteudo) {
+	var tr = document.createElement('tr');
+	for (var i = 0; i < conteudo.length; i++) {
+		var td = document.createElement('td');
+		td.textContent = conteudo[i];
+		tr.appendChild(td);
 	}
-	else {
-	res.send(result);
-	client.close();
-	}
+	return tr;
+}
+$(() => {
+	$.get("./encomendas/getAll", function (data) {
+		console.log(data);
+		data.forEach(result => {
+			document.getElementById("tbody").appendChild(criarTabela(
+				[result.relatorioOcorrencia, result.dataOcorrencia, result.utilizadorOcorrencia]
+			));
+		});
 	});
-	});
-	});
-	
-module.exports = router; 
-
-function criarTabela(conteudo) {
-	var tr = document.createElement('tr');
-	for (var i = 0; i < conteudo.length; i++) {
-	var td = document.createElement('td');
-	td.textContent = conteudo[i];
-	tr.appendChild(td);
-	}
-	return tr;
-	}
-	$(() => {
-	$.get("./encomendas/getAll", function (data) {
-	console.log(data);
-	data.forEach(result => {
-	document.getElementById("tbody").appendChild(criarTabela(
-	[result.relatorioOcorrencia, result.dataOcorrencia, result.utilizadorOcorrencia]
-	));
-	});
-	});
-	});
-	
+});
