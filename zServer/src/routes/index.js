@@ -1,5 +1,6 @@
 let express = require('express');
 let router = express.Router();
+let $ = express.Router();
 let User = require('../models/user');
 const MongoClient = require('mongodb').MongoClient;
 const uri = "mongodb+srv://projeto:projeto@clusteresw-idz8g.mongodb.net/test?retryWrites=true";
@@ -97,13 +98,13 @@ function criarTabela(conteudo) {
 	}
 	return tr;
 }
-$(() => {
-	$.get("./encomendas/getAll", function (data) {
+	function build(){
+	router.get("./encomendas/getAll", function (data) {
 		console.log(data);
 		data.forEach(result => {
 			document.getElementById("tbody").appendChild(criarTabela(
-				[result.relatorioOcorrencia, result.dataOcorrencia, result.utilizadorOcorrencia]
+		    	[result.relatorioOcorrencia, result.dataOcorrencia, result.utilizadorOcorrencia]
 			));
 		});
 	});
-});
+	};
