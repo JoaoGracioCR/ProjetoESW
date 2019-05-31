@@ -69,6 +69,33 @@
       <p>Copyright &copy; IPS Setúbal | <a href="http://www.si.ips.pt/ips_si/web_page.inicial">IPS</a> |</p>
     </div>
   </div>
+
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <script>
+    function criarTabela(conteudo) {
+      var tr = document.createElement('tr');
+      for (var i = 0; i < conteudo.length; i++) {
+        var td = document.createElement('td');
+        td.textContent = conteudo[i];
+        tr.appendChild(td);
+      }
+      return tr;
+    }
+
+    $(() => {
+      $.get("./Ocurrencias/getAll", function (data) {
+        data.forEach(result => {
+          document.getElementById("tbody").appendChild(criarTabela(
+            [result.relatorioOcorrencia, result.dataOcorrencia, result.utilizadorOcorrencia]
+          ));
+        });
+      })
+        .fail(function () {
+          alert("error");
+        })
+    })
+  </script>
 </body>
 
 </html>

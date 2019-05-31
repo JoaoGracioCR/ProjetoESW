@@ -70,6 +70,7 @@ router.post('/ocurrencias', function (req, res) {
 
 
 router.get("/getAll", (req, res, next) => {
+	const client = new MongoClient(uri, { useNewUrlParser: true });
 	client.connect(err => {
 		const getCollection = client.db("ESW").collection("Ocurrencias");
 		// perform actions on the collection object
@@ -87,24 +88,29 @@ router.get("/getAll", (req, res, next) => {
 	});
 });
 
-module.exports = router;
 
-function criarTabela(conteudo) {
-	var tr = document.createElement('tr');
-	for (var i = 0; i < conteudo.length; i++) {
-		var td = document.createElement('td');
-		td.textContent = conteudo[i];
-		tr.appendChild(td);
-	}
-	return tr;
-}
-	function build(){
-	router.get("./encomendas/getAll", function (data) {
-		console.log(data);
-		data.forEach(result => {
-			document.getElementById("tbody").appendChild(criarTabela(
-		    	[result.relatorioOcorrencia, result.dataOcorrencia, result.utilizadorOcorrencia]
-			));
+
+	
+router.get("/Ocurrencias/getAll", function (req,res,next) {
+	const client = new MongoClient(uri, { useNewUrlParser: true });
+		client.connect(err => {
+			const getCollection = client.db("ESW").collection("Ocurrencias");
+			// perform actions on the collection object
+			getCollection.find({}).toArray((err, result) => {
+				if (err) {
+					console.log(err);
+					res.send(500);
+					client.close();
+				}
+				else {
+					// res.send(result);
+					res.send([{relatorioOcorrencia:"abc", dataOcorrencia:"123", utilizadorOcorrencia:"fdd"}]);
+					client.close();
+				}
+			});
 		});
 	});
-	};
+
+module.exports = router;
+
+	
