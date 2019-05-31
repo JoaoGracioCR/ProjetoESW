@@ -104,7 +104,6 @@ router.get("/Ocurrencias/getAll", function (req,res,next) {
 				}
 				else {
 					 res.send(result);
-					//res.send([{relatorioOcorrencia:"abc", dataOcorrencia:"123", utilizadorOcorrencia:"fdd"}]);
 					client.close();
 				}
 			});
@@ -114,11 +113,11 @@ router.get("/Ocurrencias/getAll", function (req,res,next) {
 module.exports = router;
 
 
-//get dados tabela ocurrência	
+//get dados tabela autorização	
 router.get("/autorização/getAll", function (req,res,next) {
 	const client = new MongoClient(uri, { useNewUrlParser: true });
 		client.connect(err => {
-			const getCollection = client.db("ESW").collection("autorização");
+			const getCollection = client.db("ESW").collection("autorizacao");
 			// perform actions on the collection object
 			getCollection.find({}).toArray((err, result) => {
 				if (err) {
@@ -128,7 +127,53 @@ router.get("/autorização/getAll", function (req,res,next) {
 				}
 				else {
 					 res.send(result);
-					//res.send([{relatorioOcorrencia:"abc", dataOcorrencia:"123", utilizadorOcorrencia:"fdd"}]);
+					client.close();
+				}
+			});
+		});
+	});
+
+module.exports = router;
+
+
+
+//get dados tabela relatório	
+router.get("/relatorio/getAll", function (req,res,next) {
+	const client = new MongoClient(uri, { useNewUrlParser: true });
+		client.connect(err => {
+			const getCollection = client.db("ESW").collection("relatorio");
+			// perform actions on the collection object
+			getCollection.find({}).toArray((err, result) => {
+				if (err) {
+					console.log(err);
+					res.send(500);
+					client.close();
+				}
+				else {
+					 res.send(result);
+					client.close();
+				}
+			});
+		});
+	});
+
+module.exports = router;
+
+
+//get dados tabela sala	
+router.get("/sala/getAll", function (req,res,next) {
+	const client = new MongoClient(uri, { useNewUrlParser: true });
+		client.connect(err => {
+			const getCollection = client.db("ESW").collection("sala");
+			// perform actions on the collection object
+			getCollection.find({}).toArray((err, result) => {
+				if (err) {
+					console.log(err);
+					res.send(500);
+					client.close();
+				}
+				else {
+					 res.send(result);
 					client.close();
 				}
 			});
