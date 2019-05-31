@@ -68,11 +68,11 @@ router.post('/ocurrencias', function (req, res) {
 	});
 });
 
-
+//get dados tabela ocurrência
 router.get("/getAll", (req, res, next) => {
 	const client = new MongoClient(uri, { useNewUrlParser: true });
 	client.connect(err => {
-		const getCollection = client.db("ESW").collection("Ocurrencias");
+		const getCollection = client.db("ESW").collection("Ocorrencias");
 		// perform actions on the collection object
 		getCollection.find({}).toArray((err, result) => {
 			if (err) {
@@ -90,11 +90,11 @@ router.get("/getAll", (req, res, next) => {
 
 
 
-	
+//get dados tabela ocurrência	
 router.get("/Ocurrencias/getAll", function (req,res,next) {
 	const client = new MongoClient(uri, { useNewUrlParser: true });
 		client.connect(err => {
-			const getCollection = client.db("ESW").collection("Ocurrencias");
+			const getCollection = client.db("ESW").collection("ocorrencias");
 			// perform actions on the collection object
 			getCollection.find({}).toArray((err, result) => {
 				if (err) {
@@ -103,8 +103,32 @@ router.get("/Ocurrencias/getAll", function (req,res,next) {
 					client.close();
 				}
 				else {
-					// res.send(result);
-					res.send([{relatorioOcorrencia:"abc", dataOcorrencia:"123", utilizadorOcorrencia:"fdd"}]);
+					 res.send(result);
+					//res.send([{relatorioOcorrencia:"abc", dataOcorrencia:"123", utilizadorOcorrencia:"fdd"}]);
+					client.close();
+				}
+			});
+		});
+	});
+
+module.exports = router;
+
+
+//get dados tabela ocurrência	
+router.get("/autorização/getAll", function (req,res,next) {
+	const client = new MongoClient(uri, { useNewUrlParser: true });
+		client.connect(err => {
+			const getCollection = client.db("ESW").collection("autorização");
+			// perform actions on the collection object
+			getCollection.find({}).toArray((err, result) => {
+				if (err) {
+					console.log(err);
+					res.send(500);
+					client.close();
+				}
+				else {
+					 res.send(result);
+					//res.send([{relatorioOcorrencia:"abc", dataOcorrencia:"123", utilizadorOcorrencia:"fdd"}]);
 					client.close();
 				}
 			});
