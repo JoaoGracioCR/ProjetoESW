@@ -89,9 +89,29 @@ router.get("/getAll", (req, res, next) => {
 });
 
 
+//get dados tabela ocurrência	
+router.get("/Docentes/getAll", function (req,res,next) {
+	const client = new MongoClient(uri, { useNewUrlParser: true });
+		client.connect(err => {
+			const getCollection = client.db("ESW").collection("docentes");
+			// perform actions on the collection object
+			getCollection.find({}).toArray((err, result) => {
+				if (err) {
+					console.log(err);
+					res.send(500);
+					client.close();
+				}
+				else {
+					 res.send(result);
+					client.close();
+				}
+			});
+		});
+	});
+
 
 //get dados tabela ocurrência	
-router.get("/Ocurrencias/getAll", function (req,res,next) {
+router.get("/Ocorrencias/getAll", function (req,res,next) {
 	const client = new MongoClient(uri, { useNewUrlParser: true });
 		client.connect(err => {
 			const getCollection = client.db("ESW").collection("ocorrencias");

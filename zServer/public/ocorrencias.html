@@ -85,7 +85,7 @@
     }
 
     $(() => {
-      $.get("./Ocurrencias/getAll", function (data) {
+      $.get("./Ocorrencias/getAll", function (data) {
         data.forEach(result => {
           document.getElementById("tbody").appendChild(criarTabela(
             [result.tipoOcorrencia, result.dataOcorrencia, result.utilizadorOcorrencia, result.relatorioOcorrencia]
