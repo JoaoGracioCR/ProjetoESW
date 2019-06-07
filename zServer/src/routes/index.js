@@ -47,7 +47,7 @@ router.post('/ocurrencias', function (req, res) {
 
 	var name = req.body.your_name;
 	var number = req.body.your_number;
-	var email = req.body.your_mail;
+	var email = req.body.your_email;
 	var type = req.body.your_type;
 	var enquiry = req.body.your_enquiry;
 
@@ -56,9 +56,9 @@ router.post('/ocurrencias', function (req, res) {
 		if (err) {
 			res.sendStatus(500).send("error connecting to the database");
 		}
-		const collection = client.db("ESW").collection("ocurrencias");
+		const collection = client.db("ESW").collection("ocorrencias");
 		var obj = { _name: name, _number: number, _email: email, _type: type, _enquiry: enquiry };
-		client.collection("ocurrencias").insertOne(obj, function (err, res) {
+		collection.insertOne(obj, function (err, res) {
 			if (err) throw err;
 			console.log("1 document inserted");
 			client.close();

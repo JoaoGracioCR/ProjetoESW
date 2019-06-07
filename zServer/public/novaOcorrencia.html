@@ -10,6 +10,8 @@
   <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
   <link rel="stylesheet" type="text/css" href="style.css" />
   <link rel="icon" href="./Images/Icon.ico" type="image/x-icon"/>
+  <script src="../src/routes/index.js"></script>
+  
 </head>
 
 <body>
@@ -61,12 +63,12 @@
         
         <h1>Registar Occorência</h1>
         <p>Indique uma descriçao detalhada da ocorrência:</p>
-        <form action="" method="post">
+        <form action="/ocurrencias" method="post">
           <div class="form_settings">
             <p><span>Nome completo</span><input class="contact" type="text" name="your_name" value="" /></p>
             <p><span>Número de estudante</span><input class="contact" type="text" name="your_number" value="" /></p>
             <p><span>Email</span><input class="contact" type="text" name="your_email" value="" /></p>
-            <p><span>Tipo de ocorrência</span><select id="id" name="name"><option value="0"></option><option value="1">Sala</option><option value="2">Material</option><option value="3">Dano</option><option value="4">Outro</option></select></p>
+            <p><span>Tipo de ocorrência</span><select id="id" name="your_type"><option value="0"></option><option value="Sala">Sala</option><option value="Material">Material</option><option value="Dano">Dano</option><option value="Outro">Outro</option></select></p>
             <p><span>Ocorrência</span><textarea class="contact textarea" rows="8" cols="50" name="your_enquiry"></textarea></p>
             <p style="padding-top: 15px"><span>&nbsp;</span><input class="submit" type="submit" name="contact_submitted" value="submit" /></p>
           </div>
