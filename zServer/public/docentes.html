@@ -136,10 +136,10 @@
     }
 
     $(() => {
-      $.get("./Ocurrencias/getAll", function (data) {
+      $.get("./Docentes/getAll", function (data) {
         data.forEach(result => {
           document.getElementById("tbody").appendChild(criarTabela(
-            [result.tipoOcorrencia, result.dataOcorrencia, result.utilizadorOcorrencia, result.relatorioOcorrencia]
+            [result.nomeDocente, result.gabineteDocente, result.horarioDocente]
           ));
         });
       })
