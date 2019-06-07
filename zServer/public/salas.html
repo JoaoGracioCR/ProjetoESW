@@ -61,29 +61,8 @@
         <h1>Salas</h1>
 
         <p>Lista das salas:</p>
-        <table style="width:100%; border-spacing:0;">
-          <tr><th>Bloco A</th><th>Establecimento</th><th>Disponibilidade da sala</th><th>Horário</th></tr>
-          <tr><td>Sala A301</td><td>EST</td><td>Disponível</td><td><input class="myBtn" name="search" type="image" src="./Images/search.png" alt="Search" title="Search" />   <a href="./HorarioSalas/horario1.pdf  " download><img src="./Images/download.png" ></a></tr>
-          <tr><td>Sala A301</td><td>EST</td><td>Disponível</td><td><input class="myBtn" name="search" type="image" src="./Images/search.png" alt="Search" title="Search" />    <a href="./HorarioSalas/horario1.pdf  " download><img src="./Images/download.png" ></a></tr>
-          <tr><td>Sala A301</td><td>EST</td><td>Disponível</td><td><input class="myBtn" name="search" type="image" src="./Images/search.png" alt="Search" title="Search" />    <a href="./HorarioSalas/horario1.pdf  " download><img src="./Images/download.png" ></a></tr>
-          <tr><td>Sala A301</td><td>EST</td><td>Disponível</td><td><input class="myBtn" name="search" type="image" src="./Images/search.png" alt="Search" title="Search" />    <a href="./HorarioSalas/horario1.pdf  " download><img src="./Images/download.png" ></a></tr>
-        </table>
-
-        <table style="width:100%; border-spacing:0;">
-          <tr><th>Bloco E</th><th>Estabelecimento</th><th>Disponibilidade da sala</th><th>Horário</th></tr>
-          <tr><td>Sala B221</td><td>ESCE</td><td>Ocupada</td><td><input class="myBtn" name="search" type="image" src="./Images/search.png" alt="Search" title="Search" />    <a href="./HorarioSalas/horario1.pdf  " download><img src="./Images/download.png" ></a></tr>
-          <tr><td>Sala B221</td><td>ESCE</td><td>Ocupada</td><td><input class="myBtn" name="search" type="image" src="./Images/search.png" alt="Search" title="Search" />    <a href="./HorarioSalas/horario1.pdf  " download><img src="./Images/download.png" ></a></tr>
-          <tr><td>Sala B221</td><td>ESCE</td><td>Disponível</td><td><input class="myBtn" name="search" type="image" src="./Images/search.png" alt="Search" title="Search" />    <a href="./HorarioSalas/horario1.pdf  " download><img src="./Images/download.png" ></a></tr>
-          <tr><td>Sala B221</td><td>ESCE</td><td>Ocupada</td><td><input class="myBtn" name="search" type="image" src="./Images/search.png" alt="Search" title="Search" />    <a href="./HorarioSalas/horario1.pdf  " download><img src="./Images/download.png" ></a></tr>
-        </table>
-
-        <table style="width:100%; border-spacing:0;">
-            <tr><th>Bloco F</th><th>Establecimento</th><th>Disponibilidade da sala</th><th>Horário</th></tr>
-            <tr><td>Sala E021</td><td>ESS</td><td>Disponível</td><td><input class="myBtn" name="search" type="image" src="./Images/search.png" alt="Search" title="Search" />    <a href="./HorarioSalas/horario1.pdf  " download><img src="./Images/download.png" ></a></tr>
-            <tr><td>Sala E035</td><td>ESS</td><td>Disponível</td><td><input class="myBtn" name="search" type="image" src="./Images/search.png" alt="Search" title="Search" />    <a href="./HorarioSalas/horario1.pdf  " download><img src="./Images/download.png" ></a></tr>
-            <tr><td>Sala E095</td><td>ESS</td><td>Disponível</td><td><input class="myBtn" name="search" type="image" src="./Images/search.png" alt="Search" title="Search" />    <a href="./HorarioSalas/horario1.pdf  " download><img src="./Images/download.png" ></a></tr>
-            <tr><td>Sala E091</td><td>ESS</td><td>Disponível</td><td><input class="myBtn" name="search" type="image" src="./Images/search.png" alt="Search" title="Search" />   <a href="./HorarioSalas/horario1.pdf  " download><img src="./Images/download.png" ></a></tr>
-          </table>
+        <table id='tbody'><tr><th>Bloco</th><th>Número</th><th>Disponível</th><th>Horário</th></tr></table>
+         
       
           <!-- The Modal -->
           <div id="myModal" class="modal">
@@ -137,5 +116,35 @@
       <p>Copyright &copy; IPS Setúbal | <a href="http://www.si.ips.pt/ips_si/web_page.inicial">IPS</a> |</p>
     </div>
   </div>
+  
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+<script>
+    function criarTabela(conteudo) {
+      var tr = document.createElement('tr');
+      for (var i = 0; i < conteudo.length; i++) {
+        var td = document.createElement('td');
+        td.textContent = conteudo[i];
+        tr.appendChild(td);
+      }
+      return tr;
+    }
+
+    $(() => {
+      $.get("./Salas/getAll", function (data) {
+     
+        data.forEach(result => {
+          document.getElementById("tbody").appendChild(criarTabela(
+            [result.bloco, result._numeroSala, result._disponivel,result._horario]
+          ));
+        });
+      })
+        .fail(function () {
+          alert("error");
+        })
+    })
+  </script>
 </body>
+
 </html>
