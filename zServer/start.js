@@ -9,6 +9,7 @@ var indexSalas = require('./src/routes/salas');
 var ocorrenciaRouter = require('./src/routes/ocorrencias');
 var relatorioRouter = require('./src/routes/relatorios');
 var autorizacao = require('./src/routes/autorizações');
+var docente = require('./src/routes/docentes');
 
 var app = express();
 
@@ -23,6 +24,7 @@ app.use('/salas',indexSalas);
 app.use('/ocorrencias', ocorrenciaRouter);
 app.use('/relatorios', relatorioRouter);
 app.use('/autorizacoes', autorizacao);
+app.use('/docentes', docente);
 
 
 // catch 404 and forward to error handler

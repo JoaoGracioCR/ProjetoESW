@@ -7,6 +7,6 @@ var docenteSchema = new mongoose.Schema({
     horarioDocente :{type: String}
 });
 
-var docente = mongoose.model('docentes',autorizacaoSchema);
+var docente = mongoose.model('docentes',docenteSchema);
 
 module.exports = docente;
