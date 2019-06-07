@@ -61,9 +61,8 @@
               <h1>Docentes</h1>
               
               <p>Lista de docentes:</p>
-              <table style="width:100%; border-spacing:0;">
-              
-                  <table id='tbody'><tr><th>Nome</th><th>Gabinete</th><th>Horário</th></tr></table>
+                           
+                  <table id='tbody' style="width: 100%"><tr><th>Nome</th><th>Gabinete</th><th>Horário</th></tr></table>
            
                 <!-- The Modal -->
           <div id="myModal" class="modal">
@@ -124,7 +123,17 @@
       var tr = document.createElement('tr');
       for (var i = 0; i < conteudo.length; i++) {
         var td = document.createElement('td');
-        td.textContent = conteudo[i];
+        if(conteudo[i].startsWith("http")){
+          let a = document.createElement("a");
+          a.href= conteudo[i];
+          let img = document.createElement("img");
+          img.src="/Images/search.png";
+          a.append(img);
+          td.append(a);
+        }else{
+          td.textContent = conteudo[i];
+        }
+        
         tr.appendChild(td);
       }
       return tr;
