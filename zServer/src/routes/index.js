@@ -58,9 +58,15 @@ router.post('/ocurrencias', function (req, res) {
 		}
 		const collection = client.db("ESW").collection("ocorrencias");
 		var obj = { _name: name, _number: number, _email: email, _type: type, _enquiry: enquiry };
-		collection.insertOne(obj, function (err, res) {
-			if (err) throw err;
-			console.log("1 document inserted");
+		collection.insertOne(obj, function (err) {
+			if (err){
+				res.sendStatus(500).send("error");
+			}else{
+				console.log("1 document inserted");
+				res.redirect();
+			}
+
+			
 			client.close();
 		});
 
