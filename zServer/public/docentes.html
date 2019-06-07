@@ -62,18 +62,9 @@
               
               <p>Lista de docentes:</p>
               <table style="width:100%; border-spacing:0;">
-                <tr><th>Nome</th><th>Gabinete</th><th>Establecimento</th><th></th><th>Horário</th></tr>
-                <tr><td>António Manuel</td><td>F255</td><td>EST</td><td></td><td><input class="myBtn" name="search" type="image" src="./Images/search.png" alt="Search" title="Search" />    <a href="./HorarioSalas/horario1.pdf  " download><img src="./Images/download.png" ></a></tr>
-                <tr><td>Francisco Silva</td><td>F233</td><td>EST</td><td></td><td><input class="myBtn" name="search" type="image" src="./Images/search.png" alt="Search" title="Search" />    <a href="./HorarioSalas/horario1.pdf  " download><img src="./Images/download.png" ></a></tr>
-                <tr><td>Diogo Joaquim</td><td>G020</td><td>ESCE</td><td></td><td><input class="myBtn" name="search" type="image" src="./Images/search.png" alt="Search" title="Search" />    <a href="./HorarioSalas/horario1.pdf  " download><img src="./Images/download.png" ></a></tr>
-                <tr><td>Tiago Josébio</td><td>F270</td><td>EST</td><td></td><td><input class="myBtn" name="search" type="image" src="./Images/search.png" alt="Search" title="Search" />    <a href="./HorarioSalas/horario1.pdf  " download><img src="./Images/download.png" ></a></tr>
-                <tr><td>Leon Costa</td><td>E303</td><td>ESS</td><td></td><td><input class="myBtn" name="search" type="image" src="./Images/search.png" alt="Search" title="Search" />    <a href="./HorarioSalas/horario1.pdf  " download><img src="./Images/download.png" ></a></tr>
-                <tr><td>Gonçalo Lopes</td><td>E301</td><td>ESS</td><td></td><td><input class="myBtn" name="search" type="image" src="./Images/search.png" alt="Search" title="Search" />    <a href="./HorarioSalas/horario1.pdf  " download><img src="./Images/download.png" ></a></tr>
-                <tr><td>Daniel Ferreira</td><td>F240</td><td>EST</td><td></td><td><input class="myBtn" name="search" type="image" src="./Images/search.png" alt="Search" title="Search" />    <a href="./HorarioSalas/horario1.pdf  " download><img src="./Images/download.png" ></a></tr>
-                <tr><td>Pedro Silva</td><td>E290</td><td>ESS</td><td></td><td><input class="myBtn" name="search" type="image" src="./Images/search.png" alt="Search" title="Search" />    <a href="./HorarioSalas/horario1.pdf  " download><img src="./Images/download.png" ></a></tr>
-                <tr><td>André Costa</td><td>G012</td><td>ESCE</td><td></td><td><input class="myBtn" name="search" type="image" src="./Images/search.png" alt="Search" title="Search" />    <a href="./HorarioSalas/horario1.pdf  " download><img src="./Images/download.png" ></a></tr>
-              </table>
-
+              
+                  <table id='tbody'><tr><th>Nome</th><th>Gabinete</th><th>Horário</th></tr></table>
+           
                 <!-- The Modal -->
           <div id="myModal" class="modal">
           
@@ -129,5 +120,33 @@
       <p>Copyright &copy; IPS Setúbal | <a href="http://www.si.ips.pt/ips_si/web_page.inicial">IPS</a> |</p>
     </div>
   </div>
+  
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+<script>
+    function criarTabela(conteudo) {
+      var tr = document.createElement('tr');
+      for (var i = 0; i < conteudo.length; i++) {
+        var td = document.createElement('td');
+        td.textContent = conteudo[i];
+        tr.appendChild(td);
+      }
+      return tr;
+    }
+
+    $(() => {
+      $.get("./Ocurrencias/getAll", function (data) {
+        data.forEach(result => {
+          document.getElementById("tbody").appendChild(criarTabela(
+            [result.tipoOcorrencia, result.dataOcorrencia, result.utilizadorOcorrencia, result.relatorioOcorrencia]
+          ));
+        });
+      })
+        .fail(function () {
+          alert("error");
+        })
+    })
+  </script>
 </body>
 </html>

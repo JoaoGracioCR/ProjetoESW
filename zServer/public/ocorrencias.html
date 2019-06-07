@@ -60,7 +60,7 @@
       <div id="content">
         <h1>Ocorrências</h1>
         <p>Lista das ocorrências:</p>
-        <table id='tbody'></table>
+        <table id='tbody'><tr><th>Tipo de ocorrência</th><th>Data e hora da ocorrência</th><th>Utilizador</th><th>Detalhe</th></tr></table>
         <a href="novaOcorrencia.html"><b>Adicionar ocorrência </b><img src="./Images/add.png" alt="add" /></a>
       </div>
     </div>
@@ -72,7 +72,8 @@
 
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"
     integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-  <script>
+
+<script>
     function criarTabela(conteudo) {
       var tr = document.createElement('tr');
       for (var i = 0; i < conteudo.length; i++) {
@@ -87,7 +88,7 @@
       $.get("./Ocurrencias/getAll", function (data) {
         data.forEach(result => {
           document.getElementById("tbody").appendChild(criarTabela(
-            [result.relatorioOcorrencia, result.dataOcorrencia, result.utilizadorOcorrencia]
+            [result.tipoOcorrencia, result.dataOcorrencia, result.utilizadorOcorrencia, result.relatorioOcorrencia]
           ));
         });
       })
