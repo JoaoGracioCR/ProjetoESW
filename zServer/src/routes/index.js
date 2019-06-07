@@ -180,11 +180,11 @@ router.get("/relatorio/getAll", function (req,res,next) {
 module.exports = router;
 
 
-//get dados tabela sala	
-router.get("/sala/getAll", function (req,res,next) {
+//get dados tabela sala		
+router.get("/Salas/getAll", function (req,res,next) {
 	const client = new MongoClient(uri, { useNewUrlParser: true });
 		client.connect(err => {
-			const getCollection = client.db("ESW").collection("sala");
+			const getCollection = client.db("ESW").collection("salas");
 			// perform actions on the collection object
 			getCollection.find({}).toArray((err, result) => {
 				if (err) {
