@@ -78,12 +78,19 @@
 
 <script>
     function criarTabela(conteudo) {
+
       var tr = document.createElement('tr');
+
       for (var i = 0; i < conteudo.length; i++) {
         var td = document.createElement('td');
         td.textContent = conteudo[i];
         tr.appendChild(td);
       }
+
+      var checkbox = document.createElement('input'); 
+      checkbox.type = 'checkbox';
+      tr.appendChild(checkbox);
+      
       return tr;
     }
 
