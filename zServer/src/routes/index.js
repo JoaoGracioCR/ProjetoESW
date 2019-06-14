@@ -208,4 +208,36 @@ router.get("/Salas/getAll", function (req,res,next) {
 
 module.exports = router;
 
-	
+router.post("/recuperarPass", (req, res, next) => {
+	console.log(req.body);
+
+	var username = req.body.numeroAluno;
+	var password = req.body.password;
+	var repPassword = req.body.repPsw;
+
+  
+	if (password != repPassword) {
+	  alert("Passwords não correspondem");
+	} else {
+	  const client = new MongoClient(uri, { useNewUrlParser: true });
+	  client.connect(err => {
+		const collection = client.db("ESW").collection("users");
+		var query = { username: username };
+		var values = { $set: { password: password } };
+		collection.updateOne(query, values, function (err, result) {
+		  if (err || !result) {
+			alert("User não existe");
+			console.log(result)
+			console.log(err);
+		  } else {
+			res.redirect("index.html");
+			console.log(result);
+			client.close();
+		  }
+		})
+		// client.close();
+	  });
+	}
+  });
+  
+  module.exports = router;

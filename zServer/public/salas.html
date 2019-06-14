@@ -105,18 +105,19 @@
           let img = document.createElement("img");
           img.src = "/Images/search.png";
           a.append(img);
+          td.style.textAlign = "center";
           td.append(a);
         } else {
           if (typeof (conteudo[i]) === "boolean" && conteudo[i]) {
             conteudo[i] = "Disponível";
           }
-          else{
+          else if(typeof (conteudo[i]) === "boolean"){
             conteudo[i] = "Ocupado";
           }
           td.textContent = conteudo[i];
 
         }
-
+        
         tr.appendChild(td);
       }
       return tr;
