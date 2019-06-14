@@ -23,7 +23,12 @@ router.get('/editar/:id', (req, res) => {
        nome: "rui",
        nestudante:100000000
    }
-   res.render("editarOcorrencia",ocorrencia);
+   res.render("editarOcorrencia",{
+       ocorrencia:ocorrencia,
+       user:{
+           name:"Rui"
+       }
+   });
 });
 
 module.exports = router;
