@@ -72,7 +72,6 @@
         <table id='tbody' style="width: 100%">
           <tr>
             <th>Tipo de ocorrência</th>
-            <th>Data ocorrência</th>
             <th>Utilizador</th>
             <th>Detalhe</th>
             <th>Editar Ocorrência</th>
@@ -131,7 +130,7 @@
       $.get("./Ocorrencias/getAll", function (data) {
         data.forEach(result => {
           document.getElementById("tbody").appendChild(criarTabela(
-            [result.tipoOcorrencia, result.dataOcorrencia, result.utilizadorOcorrencia, result.relatorioOcorrencia], result["_idOcorre"]));
+            [result.tipoOcorrencia, result.nomeUser, result.descricaoOcorrencia], result["idOcorrencia"]));
         });
       })
         .fail(function () {

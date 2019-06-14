@@ -57,13 +57,13 @@ router.post('/ocurrencias', function (req, res) {
 			res.sendStatus(500).send("error connecting to the database");
 		}
 		const collection = client.db("ESW").collection("ocorrencias");
-		var obj = { _name: name, _number: number, _email: email, _type: type, _enquiry: enquiry };
+		var obj = {idOcorrencia: Date.now(), nomeUser: name, numUser: number, emailUser: email, tipoOcorrencia: type, descricaoOcorrencia: enquiry };
 		collection.insertOne(obj, function (err) {
 			if (err){
 				res.sendStatus(500).send("error");
 			}else{
 				console.log("1 document inserted");
-				res.redirect();
+				res.redirect('/');
 			}
 
 			
