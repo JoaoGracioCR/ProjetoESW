@@ -17,15 +17,19 @@ router.get('/', (req, res) => {
 });
 
 router.get('/editar/:id', (req, res) => {
-    // req.params.id
-
     ocorrenciaModel.findOne({idOcorrencia:req.params.id},(err,result)=>{
-        res.render("editarOcorrencia", {
-            ocorrencia: result,
-            user: {
-                name: "Rui"
-            }
-        });
+        if (err) {
+            console.log(err);
+            res.status(404).send();
+        }else{
+            res.render("editarOcorrencia", {
+                ocorrencia: result,
+                user: {
+                    name: "Rui"
+                }
+            });
+        }
+        
     });
 
     
