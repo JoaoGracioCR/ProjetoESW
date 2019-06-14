@@ -9,7 +9,7 @@
   <meta name="keywords" content="website keywords, website keywords" />
   <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
   <link rel="stylesheet" type="text/css" href="style.css" />
-  <link rel="icon" href="./Images/Icon.ico" type="image/x-icon"/>
+  <link rel="icon" href="./Images/Icon.ico" type="image/x-icon" />
 </head>
 
 <body>
@@ -36,12 +36,12 @@
     <div id="content_header"></div>
     <div id="site_content">
       <div class="sidebar">
-       <h3>Conta</h3>
-       <p><b>Visitante - </b><a href="login.html">Login</a></p>
+        <h3>Conta</h3>
+        <p><b>Visitante - </b><a href="login.html">Login</a></p>
         <!---------------------------------------------------->
         <h3>Informações</h3>
         <h4>Horário de atendimento</h4>
-        <p>2ª e 6ª feira: 09h30-12h30; 14h00-17h00 <br/>
+        <p>2ª e 6ª feira: 09h30-12h30; 14h00-17h00 <br />
           3ª e 5ª feira: 11h00-13h00; 15h00-18h50</p>
         <p>Quarta-feira: ENCERRADO (a partir de 15 de janeiro´19)</p>
         <p></p>
@@ -51,24 +51,31 @@
         <p><a href="informacoes.html">Ler mais</a></p>
         <h3>Links Úteis</h3>
         <ul>
-          <li><a href="http://www.si.ips.pt/ips_si/web_base.gera_pagina?P_pagina=37042" >Cursos</a></li>
-          <li><a href="http://www.si.ips.pt/ips_si/web_base.gera_pagina?P_pagina=36962" >Candidaturas</a></li>
-          <li><a href="http://www.si.ips.pt/ips_si/web_base.gera_pagina?P_pagina=37622" >Actividades Académicas</a></li>
-          <li><a href="http://www.si.ips.pt/ips_si/web_base.gera_pagina?P_pagina=30470" >Informações adicionais</a></li>
-        </ul>      
+          <li><a href="http://www.si.ips.pt/ips_si/web_base.gera_pagina?P_pagina=37042">Cursos</a></li>
+          <li><a href="http://www.si.ips.pt/ips_si/web_base.gera_pagina?P_pagina=36962">Candidaturas</a></li>
+          <li><a href="http://www.si.ips.pt/ips_si/web_base.gera_pagina?P_pagina=37622">Actividades Académicas</a></li>
+          <li><a href="http://www.si.ips.pt/ips_si/web_base.gera_pagina?P_pagina=30470">Informações adicionais</a></li>
+        </ul>
       </div>
       <div id="content">
         <h1>Salas</h1>
 
         <p>Lista das salas:</p>
-       
-        <table id='tbody' style="width: 100%"><tr><th>Bloco</th><th>Número</th><th>Disponível</th><th>Horário</th></tr></table>
-        <div class="loader">
-            <img src="Images/loader.gif" alt="Loading...">
-          </div>
-        
 
-      </div>  
+        <table id='tbody' style="width: 100%">
+          <tr>
+            <th>Bloco</th>
+            <th>Número</th>
+            <th>Disponível</th>
+            <th>Horário</th>
+          </tr>
+        </table>
+        <div class="loader">
+          <img src="Images/loader.gif" alt="Loading...">
+        </div>
+
+
+      </div>
     </div>
     <div id="content_footer"></div>
     <div id="footer">
@@ -77,7 +84,7 @@
   </div>
 
   <script type="text/javascript">
-    window.addEventListener("load", function(){
+    window.addEventListener("load", function () {
       const loader = document.querySelector(".loader");
       loader.className += " hidden"; //Class "loader hidden"
     });
@@ -86,22 +93,30 @@
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"
     integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 
-<script>
+  <script>
     function criarTabela(conteudo) {
-       var tr = document.createElement('tr');
+      var tr = document.createElement('tr');
       for (var i = 0; i < conteudo.length; i++) {
         var td = document.createElement('td');
-        if(conteudo[i].startsWith("http")){
+
+        if (conteudo[i].toString().startsWith("http")) {
           let a = document.createElement("a");
-          a.href= conteudo[i];
+          a.href = conteudo[i];
           let img = document.createElement("img");
-          img.src="/Images/search.png";
+          img.src = "/Images/search.png";
           a.append(img);
           td.append(a);
-        }else{
+        } else {
+          if (typeof (conteudo[i]) === "boolean" && conteudo[i]) {
+            conteudo[i] = "Disponível";
+          }
+          else{
+            conteudo[i] = "Ocupado";
+          }
           td.textContent = conteudo[i];
+
         }
-        
+
         tr.appendChild(td);
       }
       return tr;
@@ -109,10 +124,10 @@
 
     $(() => {
       $.get("./Salas/getAll", function (data) {
-     
+
         data.forEach(result => {
           document.getElementById("tbody").appendChild(criarTabela(
-            [result.bloco, result.numeroSala, result.disponivel,result.horario]
+            [result.bloco, result.numeroSala, result.disponivel, result.horario]
           ));
         });
       })
