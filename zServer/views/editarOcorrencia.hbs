@@ -9,8 +9,8 @@
   <meta name="keywords" content="website keywords, website keywords" />
   <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
   <link rel="stylesheet" type="text/css" href="/style.css" />
-  <link rel="icon" href="./Images/Icon.ico" type="image/x-icon"/>
-  
+  <link rel="icon" href="./Images/Icon.ico" type="image/x-icon" />
+
 </head>
 
 <body>
@@ -37,8 +37,8 @@
     <div id="content_header"></div>
     <div id="site_content">
       <div class="sidebar">
-       <h3>Conta</h3>
-       
+        <h3>Conta</h3>
+
         {{#if user}}
         <p><b>{{user.name}} - </b><a href="login.html">Login</a></p>
         {{else}}
@@ -47,7 +47,7 @@
         <!---------------------------------------------------->
         <h3>Informações</h3>
         <h4>Horário de atendimento</h4>
-        <p>2ª e 6ª feira: 09h30-12h30; 14h00-17h00 <br/>
+        <p>2ª e 6ª feira: 09h30-12h30; 14h00-17h00 <br />
           3ª e 5ª feira: 11h00-13h00; 15h00-18h50</p>
         <p>Quarta-feira: ENCERRADO (a partir de 15 de janeiro´19)</p>
         <p></p>
@@ -61,23 +61,35 @@
           <li><a href="http://www.si.ips.pt/ips_si/web_base.gera_pagina?P_pagina=36962">Candidaturas</a></li>
           <li><a href="http://www.si.ips.pt/ips_si/web_base.gera_pagina?P_pagina=37622">Actividades Académicas</a></li>
           <li><a href="http://www.si.ips.pt/ips_si/web_base.gera_pagina?P_pagina=30470">Informações adicionais</a></li>
-        </ul>      
+        </ul>
       </div>
       <div id="content">
-        
+
         <h1>Editar Occorência</h1>
         <p>Indique uma descriçao detalhada da ocorrência:</p>
         <form action="/ocurrencias" method="post">
           <div class="form_settings">
-            <p><span>Nome completo</span><input class="contact" type="text" name="your_name" value="{{ocorrencia.nomeUser}}" /></p>
-            <p><span>Número de estudante</span><input class="contact" type="text" name="your_number" value="{{ocorrencia.numUser}}" /></p>
-            <p><span>Email</span><input class="contact" type="text" name="your_email" value="{{ocorrencia.emailUser}}" /></p>
-            <p><span>Tipo de ocorrência</span><select id="id" name="your_type"><option value="0"></option><option value="{{ocorrencia.tipoOcorrencia}}">Sala</option><option value="Material">Material</option><option value="Dano">Dano</option><option value="Outro">Outro</option></select></p>
-            <p><span>Ocorrência</span><textarea class="contact textarea" rows="8" cols="50" name="your_enquiry" value="{{ocorrencia.descricaoOcorrencia}}"></textarea></p>
-            <p style="padding-top: 15px"><span>&nbsp;</span><input class="submit" type="submit" name="contact_submitted" value="submit" /></p>
+            <p><span>Nome completo</span><input class="contact" type="text" name="your_name"
+                value="{{ocorrencia.nomeUser}}" /></p>
+            <p><span>Número de estudante</span><input class="contact" type="text" name="your_number"
+                value="{{ocorrencia.numUser}}" /></p>
+            <p><span>Email</span><input class="contact" type="text" name="your_email"
+                value="{{ocorrencia.emailUser}}" /></p>
+            <p><span>Tipo de ocorrência</span><select id="id" name="your_type">
+                <option value="0" selected="selected">{{ocorrencia.tipoOcorrencia}}</option>
+                <option value="Sala">Sala</option>
+                <option value="Material">Material</option>
+                <option value="Dano">Dano</option>
+                <option value="Outro">Outro</option>
+              </select></p>
+            <p><span>Ocorrência</span><textarea class="contact textarea" rows="8" cols="50"
+                name="your_enquiry">{{ocorrencia.descricaoOcorrencia}}</textarea></p>
+            <p style="padding-top: 15px"><span>&nbsp;</span><input class="submit" type="submit" name="contact_submitted"
+                value="submit" /></p>
           </div>
         </form>
-        <p><br /><br />NOTA: A sua occorência será registada e analisada no espaço de 2(dois) dias úteis. Será notificado via email.</p>
+        <p><br /><br />NOTA: A sua occorência será registada e analisada no espaço de 2(dois) dias úteis. Será
+          notificado via email.</p>
       </div>
     </div>
     <div id="content_footer"></div>
@@ -85,6 +97,6 @@
       <p>Copyright &copy; IPS Setúbal | <a href="http://www.si.ips.pt/ips_si/web_page.inicial">IPS</a> |</p>
     </div>
   </div>
-
 </body>
+
 </html>
