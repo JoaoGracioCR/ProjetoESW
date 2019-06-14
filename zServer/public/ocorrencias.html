@@ -124,6 +124,25 @@
         location.href = location.origin+"/ocorrencias/editar/"+e.target.getAttribute("data-id");
       });
 
+      let td2 = document.createElement("td");
+      let remove = document.createElement('i');
+      remove.classList.add("fas");
+      remove.classList.add("fa-trash-alt");
+      remove.style.fontSize = "24px";
+      remove.setAttribute("data-id", id);
+      remove.style.cursor = "pointer";
+      td2.style.textAlign = "center";
+      td2.append(remove);
+      tr.appendChild(td2);
+
+      remove.addEventListener('click', (e) => {
+       //ALERT APAGAR SIM OU N
+       
+
+       
+       // location.href = location.origin+"/ocorrencias/editar/"+e.target.getAttribute("data-id");
+      });
+
       return tr;
     }
 
