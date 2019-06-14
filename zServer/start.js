@@ -13,7 +13,7 @@ var docente = require('./src/routes/docentes');
 
 var app = express();
 
-app.set('view engine','jade')
+app.set('view engine','hbs')
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));

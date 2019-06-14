@@ -10,6 +10,8 @@
   <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
   <link rel="stylesheet" type="text/css" href="style.css" />
   <link rel="icon" href="./Images/Icon.ico" type="image/x-icon" />
+
+  <script src="https://kit.fontawesome.com/5a7bf48401.js"></script>
 </head>
 
 <body>
@@ -62,10 +64,10 @@
         <p>Lista das ocorrências:</p>
         <p></p>
         <div style="display: flex; justify-content: space-between;">
-          
-            <a href="novaOcorrencia.html"><b>Adicionar ocorrência </b><img src="./Images/add.png" alt="add" /></a>
-          
-      
+
+          <a href="novaOcorrencia.html"><b>Adicionar ocorrência </b><img src="./Images/add.png" alt="add" /></a>
+
+
         </div>
         <table id='tbody' style="width: 100%">
           <tr>
@@ -99,19 +101,28 @@
     integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 
   <script>
-    function criarTabela(conteudo) {
-
+    function criarTabela(conteudo,id) {
       var tr = document.createElement('tr');
 
       for (var i = 0; i < conteudo.length; i++) {
-        var td = document.createElement('td');
+        let td = document.createElement('td');
         td.textContent = conteudo[i];
         tr.appendChild(td);
       }
+      let td = document.createElement("td");
+      let edit = document.createElement('i');
+      edit.classList.add("fas");
+      edit.classList.add("fa-edit");
+      edit.style.fontSize = "24px";
+      edit.setAttribute("data-id", id);
+      edit.style.cursor = "pointer";
+      td.style.textAlign = "center";
+      td.append(edit);
+      tr.appendChild(td);
 
-      var checkbox = document.createElement('input');
-      checkbox.type = 'checkbox';
-      tr.appendChild(checkbox);
+      edit.addEventListener('click', (e) => {
+        location.href = location.origin+"/ocorrencias/editar/"+e.target.getAttribute("data-id");
+      });
 
       return tr;
     }
@@ -120,8 +131,7 @@
       $.get("./Ocorrencias/getAll", function (data) {
         data.forEach(result => {
           document.getElementById("tbody").appendChild(criarTabela(
-            [result.tipoOcorrencia, result.dataOcorrencia, result.utilizadorOcorrencia, result.relatorioOcorrencia]
-          ));
+            [result.tipoOcorrencia, result.dataOcorrencia, result.utilizadorOcorrencia, result.relatorioOcorrencia], result["_idOcorre"]));
         });
       })
         .fail(function () {

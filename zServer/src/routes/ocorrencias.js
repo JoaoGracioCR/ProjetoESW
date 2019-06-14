@@ -16,4 +16,14 @@ router.get('/', (req, res) => {
     });
 });
 
+router.get('/editar/:id', (req, res) => {
+   // res.send(req.params.id);
+   let ocorrencia = {
+       id: 10,
+       nome: "rui",
+       nestudante:100000000
+   }
+   res.render("editarOcorrencia",ocorrencia);
+});
+
 module.exports = router;
