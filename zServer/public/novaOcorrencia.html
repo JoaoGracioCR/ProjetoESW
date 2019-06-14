@@ -62,11 +62,11 @@
         
         <h1>Registar Occorência</h1>
         <p>Indique uma descriçao detalhada da ocorrência:</p>
-        <form action="/ocurrencias" method="post">
+        <form name="novaOcorrencia" action="/ocurrencias" method="post" onsubmit="return validateForm()">
           <div class="form_settings">
             <p><span>Nome completo</span><input class="contact" type="text" name="your_name" value="" /></p>
             <p><span>Número de estudante</span><input class="contact" type="text" name="your_number" value="" /></p>
-            <p><span>Email</span><input class="contact" type="text" name="your_email" value="" /></p>
+            <p><span>Email</span><input class="contact" type="email" name="your_email" value="" /></p>
             <p><span>Tipo de ocorrência</span><select id="id" name="your_type"><option value="0"></option><option value="Sala">Sala</option><option value="Material">Material</option><option value="Dano">Dano</option><option value="Outro">Outro</option></select></p>
             <p><span>Ocorrência</span><textarea class="contact textarea" rows="8" cols="50" name="your_enquiry"></textarea></p>
             <p style="padding-top: 15px"><span>&nbsp;</span><input class="submit" type="submit" name="contact_submitted" value="submit" /></p>
@@ -81,4 +81,18 @@
     </div>
   </div>
 </body>
+
+<script>
+function validateForm() {
+  var name = document.forms["novaOcorrencia"]["your_name"].value;
+	var number = document.forms["novaOcorrencia"]["your_number"].value;
+	var email = document.forms["novaOcorrencia"]["your_email"].value;
+	var type = document.forms["novaOcorrencia"]["your_type"].value;
+	var enquiry = document.forms["novaOcorrencia"]["your_enquiry"].value;
+  if (name == "" || email == "" || enquiry == "") {
+    alert("Preenche tudo");
+    return false;
+  }
+}
+</script>
 </html>

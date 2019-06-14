@@ -74,6 +74,42 @@ router.post('/ocurrencias', function (req, res) {
 	});
 });
 
+//edit ocurr Method ocurrencias.
+router.post('/editarOcurrencias', function (req, res) {
+
+	var id = req.body.idUser;
+	var name = req.body.your_name;
+	var number = req.body.your_number;
+	var email = req.body.your_email;
+	var type = req.body.your_type;
+	var enquiry = req.body.your_enquiry;
+
+	const client = new MongoClient(uri, { useNewUrlParser: true });
+	client.connect(err => {
+		if (err) {
+			res.sendStatus(500).send("error connecting to the database");
+		}
+		const collection = client.db("ESW").collection("ocorrencias");
+
+		     collection.updateOne( 
+			 { "idOcorrencia" : id }, 
+			 { $set: {"nomeUser" : name, "numUser" : number, "emailUser" : email, "tipoOcorrencia" : type, "descricaoOcorrencia" : enquiry } },
+			 { upsert: true } );
+
+			 if (err){
+				res.sendStatus(500).send("error");
+			}else{
+				console.log("1 document updated");
+				res.redirect('/');
+			}
+
+			client.close();
+		});
+
+	});
+
+
+
 //get dados tabela ocurrência
 router.get("/getAll", (req, res, next) => {
 	const client = new MongoClient(uri, { useNewUrlParser: true });

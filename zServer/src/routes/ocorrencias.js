@@ -25,7 +25,7 @@ router.get('/editar/:id', (req, res) => {
             res.render("editarOcorrencia", {
                 ocorrencia: result,
                 user: {
-                    name: "Rui"
+                    name: "TESTE"
                 }
             });
         }

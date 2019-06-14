@@ -67,8 +67,10 @@
 
         <h1>Editar Occorência</h1>
         <p>Indique uma descriçao detalhada da ocorrência:</p>
-        <form action="/ocurrencias" method="post">
+        <form action="/editarOcurrencias" method="post">
           <div class="form_settings">
+            <p hidden><span>ID FARRUSCADO, alterar depois *LUL* </span><input class="contact" type="number" name="idUser"
+                value="{{ocorrencia.idOcorrencia}}" /></p>
             <p><span>Nome completo</span><input class="contact" type="text" name="your_name"
                 value="{{ocorrencia.nomeUser}}" /></p>
             <p><span>Número de estudante</span><input class="contact" type="text" name="your_number"
