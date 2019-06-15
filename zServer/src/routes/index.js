@@ -309,3 +309,34 @@ router.post("/recuperarPass", (req, res, next) => {
   });
   
   module.exports = router;
+
+  //insere registos do form contactar .
+router.post('/contactar', function (req, res) {
+
+	var name = req.body.your_name;
+	var number = req.body.your_number;
+	var email = req.body.your_email;
+	var enquiry = req.body.your_enquiry;
+
+	const client = new MongoClient(uri, { useNewUrlParser: true });
+	client.connect(err => {
+		if (err) {
+			res.sendStatus(500).send("error connecting to the database");
+		}
+		const collection = client.db("ESW").collection("contactar");
+		var obj = {idContactar: Date.now(), nomeUser: name, numUser: number, emailUser: email, descricaoContactar: enquiry };
+		collection.insertOne(obj, function (err) {
+			if (err){
+				res.sendStatus(500).send("error");
+			}else{
+				console.log("1 document inserted");
+				res.redirect('/');
+			}
+
+			
+			client.close();
+		});
+
+
+	});
+});

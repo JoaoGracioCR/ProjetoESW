@@ -61,7 +61,7 @@
         <h1>Contactar Suporte Tecnico Escolar</h1>
         
         <p>No formulário abaixo poderá submeter algum erro ou mau funcionamento que tenha sido encontrado na aplicação para ser analisado pela equipa técnica:</p>
-        <form action="" method="post">
+        <form name="novoContactar" action="/contactar" method="post" onsubmit="return validateForm()" >
           <div class="form_settings">
               <p><span>Nome completo</span><input class="contact" type="text" name="your_name" value="" /></p>
             <p><span>Número de estudante</span><input class="contact" type="text" name="your_number" value="" /></p>
