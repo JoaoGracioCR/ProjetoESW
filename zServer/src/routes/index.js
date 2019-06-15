@@ -74,6 +74,33 @@ router.post('/ocurrencias', function (req, res) {
 	});
 });
 
+router.post('/Ocorrencias/apagar', function (req, res) {
+	var all = req.body;
+	var id = all.idOcorrencia;
+
+	const client = new MongoClient(uri, { useNewUrlParser: true });
+	client.connect(err => {
+		if (err) {
+			res.sendStatus(500).send("error connecting to the database");
+		}
+		const collection = client.db("ESW").collection("ocorrencias");
+
+		     collection.deleteOne({ "idOcorrencia" : id }, function (err, results){
+				if (err){
+					res.sendStatus(500).send("error");
+				}else{
+					console.log("1 document deleted");
+					res.redirect('/');
+				}
+			 });
+
+			client.close();
+		});
+
+	
+
+});
+
 //edit ocurr Method ocurrencias.
 router.post('/editarOcurrencias', function (req, res) {
 
