@@ -13,6 +13,10 @@ router.post('/login', function (req, res) {
 	var username = req.body.numeroAluno;
 	var password = req.body.password;
 
+if(username === "" || password === ""){
+ console.log('Username and Password must be filled');
+ res.redirect('/login.html');
+}else{
 	const client = new MongoClient(uri, { useNewUrlParser: true });
 	client.connect(err => {
 		if (err) {
@@ -26,6 +30,7 @@ router.post('/login', function (req, res) {
 				if (result['_passWord'] === password) {
 					console.log("Login")
 				} else {
+					console.log("Password is incorrect");
 					res.redirect('/login.html');
 				}
 			} else {
@@ -34,7 +39,7 @@ router.post('/login', function (req, res) {
 			client.close();
 		});
 	});
-
+}
 });
 
 router.get('/login', (req, res) => {
@@ -274,31 +279,31 @@ module.exports = router;
 router.post("/recuperarPass", (req, res, next) => {
 	console.log(req.body);
 
-	var username = req.body.numeroAluno;
+	var username = req.body.nomeAluno;
 	var password = req.body.password;
 	var repPassword = req.body.repPsw;
 
   
 	if (password != repPassword) {
-	  alert("Passwords não correspondem");
+	  console.log("Passwords do not match");
+	  res.redirect('/forgotPassword.html')
+
 	} else {
 	  const client = new MongoClient(uri, { useNewUrlParser: true });
 	  client.connect(err => {
 		const collection = client.db("ESW").collection("users");
-		var query = { username: username };
-		var values = { $set: { password: password } };
-		collection.updateOne(query, values, function (err, result) {
-		  if (err || !result) {
-			alert("User não existe");
-			console.log(result)
-			console.log(err);
-		  } else {
-			res.redirect("index.html");
-			console.log(result);
+		collection.updateOne( 
+			{ "_userName" : username }, 
+			{ $set: {"_userName" : username, "_passWord" : repPassword} },
+			{ upsert: true } );
+			if (err){
+				res.sendStatus(500).send("error");
+			}else{
+				console.log("1 document updated");
+				res.redirect('/');
+			}
+
 			client.close();
-		  }
-		})
-		// client.close();
 	  });
 	}
   });
