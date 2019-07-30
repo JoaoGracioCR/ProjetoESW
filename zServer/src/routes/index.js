@@ -1,14 +1,14 @@
+
 let express = require('express');
 let router = express.Router();
 let $ = express.Router();
 let User = require('../models/user');
 const MongoClient = require('mongodb').MongoClient;
+
 const uri = "mongodb+srv://projeto:projeto@clusteresw-idz8g.mongodb.net/test?retryWrites=true";
-router.get('/', (req, res, next) => {
-	res.send('index');
-})
+
 //Login Method FORM LOGIN login.html
-router.post('/login', function (req, res) {
+/*router.post('/login', function (req, res) {
 
 	var username = req.body.numeroAluno;
 	var password = req.body.password;
@@ -28,7 +28,8 @@ if(username === "" || password === ""){
 			if (err) throw err;
 			if (result) {
 				if (result['_passWord'] === password) {
-					console.log("Login")
+					console.log("Login");
+					res.redirect('/login.html');
 				} else {
 					console.log("Password is incorrect");
 					res.redirect('/login.html');
@@ -40,12 +41,68 @@ if(username === "" || password === ""){
 		});
 	});
 }
-});
+});*/
+
+
+// Login
+router.get('/', function (req, res, next) {
+	res.render('index', { title: 'Express' });
+  });
+  
+  router.post("/login", (req, res, next) => {
+	console.log(req.body.numeroAluno)
+	const client = new MongoClient(uri, { useNewUrlParser: true });
+	client.connect(err => {
+	  var numAluno = req.body.userName;
+	  var password =  req.body.passWord;
+	  console.log(req);
+	  const collection = client.db("ESW").collection("users");
+	  // perform actions on the collection object
+	  collection.findOne({'userName':numAluno, 'passWord':password},(err, res2) => {
+		if(err){
+		  res.json({"Message":"SystemError"});
+		  console.log("1");
+		}else{
+		  console.log("2"); 
+		  console.log(res2);
+		  console.log(password);
+			console.log("2.1"); 
+			console.log(res2);
+			res.status(200).json({
+				"Message": "Success",
+				"userName": res2.userName,
+				"passWord": res2.passWord,      			
+			});
+			}
+			  });
+		  });   
+		});
+
+  module.exports = router;
+  
+//getcookie
+
+function getCookie(cname) {
+	var name = cname + "=";
+	var decodedCookie = decodeURIComponent(document.cookie);
+	var ca = decodedCookie.split(';');
+	for(var i = 0; i <ca.length; i++) {
+	  var c = ca[i];
+	  while (c.charAt(0) == ' ') {
+		c = c.substring(1);
+	  }
+	  if (c.indexOf(name) == 0) {
+		return c.substring(name.length, c.length);
+	  }
+	}
+	return "";
+  }
+
+
 
 router.get('/login', (req, res) => {
 	res.redirect('/login.html');
 });
-
 
 //insert ocurr Method FORM LOGIN ocurrencias.
 router.post('/ocurrencias', function (req, res) {

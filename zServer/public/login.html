@@ -9,7 +9,8 @@
   <meta name="keywords" content="website keywords, website keywords" />
   <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
   <link rel="stylesheet" type="text/css" href="style.css" />
-  <link rel="icon" href="./Images/Icon.ico" type="image/x-icon"/>
+  <link rel="icon" href="./Images/Icon.ico" type="image/x-icon" />
+  <script src="login.js"></script>
 </head>
 
 <body>
@@ -22,31 +23,34 @@
           <h2>Gestão interna</h2>
         </div>
       </div>
-     
+
     </div>
-      
+
     <div id="site_content">
-     
-      <div id="content">   
-          <h1>Bem vindo</h1>
-          
-          <p>Será necessario estar autenticado para ter acesso a todas as funcionalidades da aplicação:</p>
-          <form action="/login" method="post">
-            <div class="form_settings">
-                <p><span>Número de estudante</span><input class="contact" type="text" name="numeroAluno" value="" /></p>
-               <p><span>Password</span><input class="contact" type="password" name="password" value=""/></p>
-               <h5 style="padding-left: 300px"><span><a href="forgotPassword.html">Forgot password ?</a></span></h5>
-               <p></p>
-              <p style="padding-top: 60px"><span>&nbsp;</span><input class="submit" type="submit" name="login" value="Login" /></p>
-              <p style="padding-top: 380px"></p>
-            </div>
-          </form>
-        </div>
+
+      <div id="content">
+        <h1>Bem vindo</h1>
+
+        <p>Será necessario estar autenticado para ter acesso a todas as funcionalidades da aplicação:</p>
+        <form action="/login" method="post" id='loginForm'>
+          <div class="form_settings">
+            <p><span>Número de estudante</span><input id="numeroAluno" class="contact" type="text" name="numeroAluno" value="" /></p>
+            <p><span>Password</span><input id="password" class="contact" type="password" name="password" value="" /></p>
+            <h5 style="padding-left: 300px"><span><a href="forgotPassword.html">Forgot password ?</a></span></h5>
+            <p></p>
+            <p style="padding-top: 60px"><span>&nbsp;</span>
+              <input class="submit" type="button" onclick="fazerLogin()" name="login" value="Login" /></p>
+              
+            <p style="padding-top: 380px"></p>
+          </div>
+        </form>
       </div>
+    </div>
     <div id="content_footer"></div>
     <div id="footer">
       <p>Copyright &copy; IPS Setúbal | <a href="http://www.si.ips.pt/ips_si/web_page.inicial">IPS</a> |</p>
     </div>
   </div>
 </body>
+
 </html>
