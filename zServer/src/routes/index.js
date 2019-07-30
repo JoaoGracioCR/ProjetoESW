@@ -188,7 +188,6 @@ router.post('/editarOcurrencias', function (req, res) {
 			}else{
 				console.log("1 document updated");
 				res.redirect('/');
-				console.log(results);
 			}
 
 			client.close();
