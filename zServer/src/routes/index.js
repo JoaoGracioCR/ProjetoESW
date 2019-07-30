@@ -138,35 +138,33 @@ router.post('/ocurrencias', function (req, res) {
 
 router.post('/Ocorrencias/apagar', function (req, res) {
 	var all = req.body;
-	var id = all.idOcorrencia;
+	var id = parseFloat(all.idOcorrencia);
 
 	const client = new MongoClient(uri, { useNewUrlParser: true });
-	client.connect(err => {
+	client.connect( function (err, db) {
 		if (err) {
 			res.sendStatus(500).send("error connecting to the database");
 		}
-		const collection = client.db("ESW").collection("ocorrencias");
-
-		     collection.deleteOne({ "idOcorrencia" : id }, function (err, results){
+		var collection = db.db("ESW");		
+		     collection.collection("ocorrencias").deleteOne({ "idOcorrencia" : id }, function (err, results){
 				if (err){
-					res.sendStatus(500).send("error");
+					res.sendStatus(500).send("error");			
 				}else{
-					console.log("1 document deleted");
+					console.log(results);
 					res.redirect('/');
 				}
 			 });
 
 			client.close();
-		});
 
-	
+	});	
 
 });
 
 //edit ocurr Method ocurrencias.
 router.post('/editarOcurrencias', function (req, res) {
 
-	var id = req.body.idUser;
+	var id = parseFloat(req.body.idUser);
 	var name = req.body.your_name;
 	var number = req.body.your_number;
 	var email = req.body.your_email;
@@ -190,6 +188,7 @@ router.post('/editarOcurrencias', function (req, res) {
 			}else{
 				console.log("1 document updated");
 				res.redirect('/');
+				console.log(results);
 			}
 
 			client.close();
